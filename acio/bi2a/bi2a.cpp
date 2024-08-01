@@ -715,10 +715,16 @@ static bool __cdecl ac_io_bi2a_control_tapeled_bright(size_t off1, size_t off2,
     }
 
     if (avs::game::is_model("REC")){
-       log_info("chrislog bi2a ac_io_bi2a_control_tapeled_bright", "Dancerush LED event received");
+       //log_info("chrislog bi2a ac_io_bi2a_control_tapeled_bright", "Dancerush LED event received");
        //std::string data = "off1: " + std::to_string(off1) + " off2: " + std::to_string(off2) + " r: " + std::to_string(r) + " g: " + std::to_string(g) + " b: " + std::to_string(b) + " bank: " + std::to_string(bank);
 
-       log_info("chrislog bi2a ac_io_bi2a_control_tapeled_bright all", "off1: {} off2: {} r: {} g: {} b: {} bank: {}", off1, off2, r, g, b, bank);
+       log_info("bi2a LEDs", "off1 {}, off2 {}, r {}, g {}, b {}, bank {}", off1, off2, r, g, b, bank);
+
+       if ((off1 == 5 || off1 == 6) && off2 < 26){
+           games::drs::DRS_MONITORLED[off2 + (26 * off1 - 5)][0] = r;
+           games::drs::DRS_MONITORLED[off2 + (26 * off1 - 5)][1] = g;
+           games::drs::DRS_MONITORLED[off2 + (26 * off1 - 5)][2] = b;
+       }
     }
 
     return true;

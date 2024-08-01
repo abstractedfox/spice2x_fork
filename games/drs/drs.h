@@ -35,6 +35,7 @@ namespace games::drs {
     };
 
     extern char DRS_TAPELED[38 * 49][3];
+    extern char DRS_MONITORLED[26 * 2][3];
     extern linalg::aliases::float3 VR_SCALE;
     extern linalg::aliases::float3 VR_OFFSET;
     extern float VR_ROTATION;

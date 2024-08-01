@@ -14,6 +14,7 @@ namespace api::modules {
 
         // function definitions
         void tapeled_get(Request &req, Response &res);
+        void monitorled_get(Request &req, Response &res);
         void touch_set(Request &req, Response &res);
     };
 }

@@ -10,6 +10,7 @@ namespace api::modules {
 
     DRS::DRS() : Module("drs") {
         functions["tapeled_get"] = std::bind(&DRS::tapeled_get, this, _1, _2);
+        functions["monitorled_get"] = std::bind(&DRS::monitorled_get, this, _1, _2);
         functions["touch_set"] = std::bind(&DRS::touch_set, this, _1, _2);
     }
 
@@ -17,6 +18,7 @@ namespace api::modules {
      * ticker_get()
      */
     void DRS::tapeled_get(Request &req, Response &res) {
+
 
         // copy data to array
         Value tapeled(kArrayType);
@@ -29,6 +31,21 @@ namespace api::modules {
 
         // add to response
         res.add_data(tapeled);
+    }
+
+    void DRS::monitorled_get(Request &req, Response &res){
+        // copy data to array
+        Value monitorled(kArrayType);
+        const size_t monitorled_len = sizeof(games::drs::DRS_MONITORLED);
+        const uint8_t *monitorled_raw = (uint8_t*) games::drs::DRS_MONITORLED;
+        monitorled.Reserve(monitorled_len, res.doc()->GetAllocator());
+
+        for (size_t i = 0; i < monitorled_len; i++) {
+            monitorled.PushBack(monitorled_raw[i], res.doc()->GetAllocator());
+        }
+
+        // add to response
+        res.add_data(monitorled);
     }
 
     void DRS::touch_set(Request &req, Response &res) {

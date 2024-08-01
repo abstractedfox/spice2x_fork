@@ -149,6 +149,7 @@ namespace games::drs {
 	}
 
     char DRS_TAPELED[38 * 49][3] {};
+    char DRS_MONITORLED[26 * 2][3] {}; //we'll say left is 0-25 and right is 26-52
     bool VR_STARTED = false;
     bool DISABLE_TOUCH = false;
     bool TRANSPOSE_TOUCH = false;
