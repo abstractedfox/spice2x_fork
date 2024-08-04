@@ -40,9 +40,15 @@ namespace api::modules {
         const uint8_t *monitorled_raw = (uint8_t*) games::drs::DRS_MONITORLED;
         monitorled.Reserve(monitorled_len, res.doc()->GetAllocator());
 
+        std::string debugoutput = "";
         for (size_t i = 0; i < monitorled_len; i++) {
             monitorled.PushBack(monitorled_raw[i], res.doc()->GetAllocator());
+            debugoutput += std::to_string(monitorled_raw[i]);
         }
+
+        //std::cout << "chrislog!! monitorled_get " << debugoutput << "\n";
+        //log_info("chrislog monitorled_get", "{}", debugoutput.c_str());
+        printf("chrislog montiorled_get raw%s\n", debugoutput.c_str());
 
         // add to response
         res.add_data(monitorled);
