@@ -713,8 +713,6 @@ static bool __cdecl ac_io_bi2a_control_tapeled_bright(size_t off1, size_t off2,
     }
 
     if (avs::game::is_model("REC")){
-       log_info("bi2a LEDs", "off1 {}, off2 {}, r {}, g {}, b {}, bank {}", off1, off2, r, g, b, bank);
-
        if ((off1 == 5 || off1 == 6) && off2 < 26){
            games::drs::DRS_MONITORLED[off2 + (26 * (off1 - 5))][0] = r;
            games::drs::DRS_MONITORLED[off2 + (26 * (off1 - 5))][1] = g;
